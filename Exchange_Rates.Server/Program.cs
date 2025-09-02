@@ -11,7 +11,12 @@ using Telegram.Bot.Types.ReplyMarkups;
 
 class Program
 {
-    private static readonly string botToken = "7948406890:AAEjfZGka48Fhja_yl7FALhb-DZriXf7-h0";
+    // Eski: to'g'ridan-to'g'ri kodga yozilgan
+// private static readonly string botToken = "7948406890:AAEjfZGka48Fhja_yl7FALhb-DZriXf7-h0";
+
+// Yangi: Environment Variable orqali olish
+    private static readonly string botToken = Environment.GetEnvironmentVariable("TELEGRAM_TOKEN");
+
     private static readonly string apiUrl = "https://cbu.uz/uz/arkhiv-kursov-valyut/json/";
     private static Dictionary<long, string> userLanguages = new Dictionary<long, string>(); 
 
