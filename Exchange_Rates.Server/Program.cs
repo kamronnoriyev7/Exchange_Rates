@@ -11,7 +11,7 @@ using Telegram.Bot.Types.ReplyMarkups;
 
 class Program
 {
-    private static readonly string botToken = "7948406890:AAHcgP5M4evs21x_EEELddSwIm-ywzftb-c";
+    private static readonly string botToken = "7948406890:AAEjfZGka48Fhja_yl7FALhb-DZriXf7-h0";
     private static readonly string apiUrl = "https://cbu.uz/uz/arkhiv-kursov-valyut/json/";
     private static Dictionary<long, string> userLanguages = new Dictionary<long, string>(); 
 
