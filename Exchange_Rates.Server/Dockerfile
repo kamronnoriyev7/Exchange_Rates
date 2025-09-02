@@ -3,14 +3,13 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
 # Project faylini nusxalash va restore qilish
-COPY ["Exchange_Rates.Server/Exchange_Rates.Server.csproj", "Exchange_Rates.Server/"]
-RUN dotnet restore "Exchange_Rates.Server/Exchange_Rates.Server.csproj"
+COPY ["Exchange_Rates.Server.csproj", "./"]
+RUN dotnet restore "Exchange_Rates.Server.csproj"
 
 # Barcha kodlarni nusxalash
 COPY . .
 
 # Build qilish
-WORKDIR "/src/Exchange_Rates.Server"
 RUN dotnet build "Exchange_Rates.Server.csproj" -c Release -o /app/build
 
 # 2️⃣ Publish stage
