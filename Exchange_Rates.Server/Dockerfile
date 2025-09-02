@@ -2,12 +2,14 @@
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
-# Dockerfile papkada .csproj bor, shuning uchun uni to‘g‘ridan nusxalaymiz
+# .csproj faylni nusxalash va restore qilish
 COPY Exchange_Rates.Server.csproj ./
 RUN dotnet restore Exchange_Rates.Server.csproj
 
-# Barcha kodni nusxalash
+# Barcha kodlarni nusxalash
 COPY . .
+
+# Build qilish
 RUN dotnet build Exchange_Rates.Server.csproj -c Release -o /app/build
 
 # 2️⃣ Publish stage
@@ -17,5 +19,9 @@ RUN dotnet publish Exchange_Rates.Server.csproj -c Release -o /app/publish /p:Us
 # 3️⃣ Run stage
 FROM mcr.microsoft.com/dotnet/runtime:8.0 AS final
 WORKDIR /app
+
+# Build qilingan fayllarni run image ga nusxalash
 COPY --from=publish /app/publish .
+
+# Botni ishga tushirish
 ENTRYPOINT ["dotnet", "Exchange_Rates.Server.dll"]
